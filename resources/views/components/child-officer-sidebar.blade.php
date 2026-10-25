@@ -199,7 +199,19 @@
     <div class="co-nav-title">Activities</div>
     <a class="co-nav-link {{ request()->routeIs('child_officer.follow-ups.*') ? 'active' : '' }}" href="{{ route('child_officer.follow-ups.index') }}">Follow-ups</a>
     <div class="co-nav-title">Reports</div>
-    <a class="co-nav-link" href="#">Child Reports</a>
+
+    <a class="co-nav-link {{ request()->routeIs('child_officer.reports.index') ? 'active' : '' }}"
+   href="{{ route('child_officer.reports.index') }}">
+    Child Reports
+</a>
+
+
+<a class="co-nav-link {{ request()->routeIs('child_officer.registration_reports.*') ? 'active' : '' }}"
+   href="{{ route('child_officer.registration_reports.index') }}">
+    Child Registration Report
+</a>
+
+
     <div class="co-nav-title">Account</div>
     <a class="co-nav-link" href="#">Profile</a>
 

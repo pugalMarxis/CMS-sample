@@ -11,7 +11,10 @@ use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\EventAttendanceController;
 use App\Http\Controllers\QuestionnaireResponseController;
 
+
 use App\Http\Controllers\ChildOfficer\DashboardController;
+use App\Http\Controllers\ChildOfficer\ChildRegistrationReportController;
+use App\Http\Controllers\ChildOfficer\ChildReportController as ChildOfficerChildReportController;
 use App\Http\Controllers\ChildOfficer\ChildController as ChildOfficerChildController;
 use App\Http\Controllers\ChildOfficer\GuardianController as ChildOfficerGuardianController;
 
@@ -245,6 +248,31 @@ Route::middleware('auth')->group(function () {
         '/child-officer/dashboard',
         [DashboardController::class, 'index']
     )->name('child_officer.dashboard');
+
+
+Route::get(
+    '/child-officer/reports',
+    [ChildOfficerChildReportController::class, 'index']
+)->name('child_officer.reports.index');
+
+Route::get('/child-officer/registration-reports', [ChildRegistrationReportController::class, 'index'])
+    ->name('child_officer.registration_reports.index');
+
+Route::get('/child-officer/registration-reports/export/excel', [ChildRegistrationReportController::class, 'exportExcel'])
+    ->name('child_officer.registration_reports.export.excel');
+
+Route::get('/child-officer/registration-reports/export/pdf', [ChildRegistrationReportController::class, 'exportPdf'])
+    ->name('child_officer.registration_reports.export.pdf');
+
+Route::get(
+    '/child-officer/reports/export/excel',
+    [ChildOfficerChildReportController::class, 'exportExcel']
+)->name('child_officer.reports.export.excel');
+
+Route::get(
+    '/child-officer/reports/export/pdf',
+    [ChildOfficerChildReportController::class, 'exportPdf']
+)->name('child_officer.reports.export.pdf');
 
     Route::prefix('/child-officer/follow-ups')->name('child_officer.follow-ups.')->group(function () {
         Route::get('/', [ChildOfficerEventFollowUpController::class, 'index'])->name('index');
